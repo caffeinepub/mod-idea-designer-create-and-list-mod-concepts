@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Basit bir uygulamada mod fikirleri tasarlayıp görüntülemeye yönelik yeni proje.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-frontend-page-that-lets-users-design-a-mod-idea-using-a-form-with-fields-title-description-game-platform-tags-comma-separated-input-that-becomes-a-list-on-submit-save-the-idea-via-the-backend-and-show-success-error-feedback",
+      "title": "Create a frontend page that lets users design a mod idea using a form with fields: Title, Description, Game/Platform, Tags (comma-separated input that becomes a list). On submit, save the idea via the backend and show success/error feedback.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-frontend-list-view-that-displays-all-created-mod-ideas-with-basic-filtering-and-viewing-show-title-game-platform-tags-created-date-and-a-truncated-description-preview-allow-expanding-collapsing-each-item-to-read-the-full-description",
+      "title": "Create a frontend list view that displays all created mod ideas with basic filtering and viewing: show Title, Game/Platform, Tags, Created date, and a truncated Description preview; allow expanding/collapsing each item to read the full description.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-use-react-query-for-fetching-and-mutations-for-mod-ideas-including-cache-invalidation-after-creating-a-new-idea-so-the-list-updates-immediately-without-a-manual-refresh",
+      "title": "Use React Query for fetching and mutations for mod ideas, including cache invalidation after creating a new idea so the list updates immediately without a manual refresh.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-creative-visual-theme-across-the-app-colors-typography-spacing-and-components-suitable-for-a-mod-workshop-concept-avoiding-default-plain-styling-use-tailwind-shadcn-composition-and-keep-the-theme-consistent-across-form-list-and-empty-loading-states",
+      "title": "Apply a coherent, creative visual theme across the app (colors, typography, spacing, and components) suitable for a \"mod workshop\" concept, avoiding default/plain styling. Use Tailwind + shadcn composition and keep the theme consistent across form, list, and empty/loading states.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Mod tasarlama (mod fikirleri oluşturma) özelliği",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Oluşturulan mod fikirlerini görüntüleme/listeleme özelliği",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement backend data storage and APIs for mod ideas: allow creating a mod idea and listing all created mod ideas (persisted in canister stable state). Each mod idea must include: id, title, description, game/platform, tags (list of strings), createdAt timestamp, and author principal (if available).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Mod Idea Designer: Create and List Mod Concepts",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

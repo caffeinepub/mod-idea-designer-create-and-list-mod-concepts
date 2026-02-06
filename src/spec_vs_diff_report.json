@@ -1,0 +1,70 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-06T17:58:37.228Z",
+  "summary": "Core frontend components for creating, listing, filtering, and expanding mod ideas were added, along with React Query hooks and a workshop-themed Tailwind design. However, the backend implementation does not meet key persistence and validation requirements (no stable storage, no reverse-chronological guarantee, no clear error results), and it appears to not actually store created ideas due to use of an immutable List binding. Additionally, some authentication/actor hook changes and an extra backend endpoint were introduced without being requested and may violate the immutablePaths constraint.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Persist mod ideas in canister stable state across upgrades/restarts.",
+      "reason": "backend/main.mo defines in-memory variables only; there is no stable var usage nor any upgrade hooks (preupgrade/postupgrade).",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Return list of mod ideas in reverse-chronological order (newest first) via a canister method.",
+      "reason": "backend getAllModIdeas simply converts the list to an array without sorting/reversing; newest-first is only implemented in the frontend query sorting.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/features/modIdeas/queries.ts"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Backend rejects invalid payloads (e.g., empty title or empty description) with a clear error result.",
+      "reason": "createModIdea returns async Nat and performs no validation; there is no Result/error type or trapping with a clear message for invalid title/description.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Added a backend method to fetch a single mod idea by id (getModIdea), including trapping when not found.",
+      "reason": "BuildRequest only asked for create and list APIs; single-item fetch was not requested.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Added/changed authentication/actor hook behavior using React Query + Internet Identity integration logic (actor recreation/invalidation on identity change).",
+      "reason": "Authentication changes were not requested, and the BuildRequest explicitly forbids editing frontend files under immutablePaths such as frontend/src/hooks/useInternetIdentity.ts(x) and frontend/src/hooks/useActor.ts.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/hooks/useInternetIdentity.ts"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/features/modIdeas/components/ModIdeaFilters.tsx",
+    "frontend/src/features/modIdeas/components/ModIdeaForm.tsx",
+    "frontend/src/features/modIdeas/components/ModIdeaList.tsx",
+    "frontend/src/features/modIdeas/components/ModIdeaWorkshopPage.tsx",
+    "frontend/src/features/modIdeas/queries.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

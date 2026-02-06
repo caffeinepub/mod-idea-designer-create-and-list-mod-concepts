@@ -1,2 +1,3 @@
-# mod-idea-designer-create-and-list-mod-concepts
-Exported from Caffeine project: Mod Idea Designer: Create and List Mod Concepts
+## Mod Idea Designer: Create and List Mod Concepts
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

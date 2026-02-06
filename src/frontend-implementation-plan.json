@@ -1,0 +1,112 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Mod Idea Designer (Frontend): Form + List with React Query and Themed UI",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Add a mod idea designer form (Title, Description, Game/Platform, Tags) with inline validation and success/error feedback, saving via backend.",
+      "acceptanceCriteria": [
+        "The form prevents submission when required fields (Title, Description) are empty and shows inline validation messages in English.",
+        "Submitting a valid form calls the backend create method and resets the form on success.",
+        "The UI shows a clear error message when the backend returns an error or the call fails."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/modIdeas/components/ModIdeaForm.tsx",
+          "operation": "create",
+          "description": "Create the ModIdeaForm component with controlled inputs for Title, Description, Game/Platform, and Tags (comma-separated -> string[]), inline English validation, submit handling, and success/error feedback UI using shadcn-ui form primitives (e.g., Input/Textarea/Button/Alert/Card composition). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/modIdeas/components/ModIdeaWorkshopPage.tsx",
+          "operation": "create",
+          "description": "Create a workshop-style page container that hosts the form and the list view together (single page), providing shared layout, header copy (English), and consistent spacing using Tailwind + shadcn-ui Card/Separator composition. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the new ModIdeaWorkshopPage into the app as the primary view so users can access the mod idea form and submit ideas without needing additional routes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add a mod idea list view with newest-first rendering, empty/loading/error states, truncation with expand/collapse, and client-side filtering by Game/Platform and/or tag.",
+      "acceptanceCriteria": [
+        "On page load, the app fetches mod ideas from the backend and renders them newest-first.",
+        "Each mod idea card shows Title, Game/Platform, Tags, and Created date; description is truncated by default with a user control to expand/collapse.",
+        "If there are no mod ideas, the UI shows an empty state message in English (e.g., \"No mod ideas yet\").",
+        "The list has a simple client-side filter by Game/Platform text and/or tag text (case-insensitive)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/modIdeas/components/ModIdeaList.tsx",
+          "operation": "create",
+          "description": "Create ModIdeaList to render mod ideas as themed cards (Title, Game/Platform, Tags, Created date, truncated Description preview) with per-item expand/collapse control, and English empty state. Use shadcn-ui components (e.g., Card/Badge/Button/Collapsible or Accordion) by composition only. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/modIdeas/components/ModIdeaFilters.tsx",
+          "operation": "create",
+          "description": "Create lightweight client-side filter UI (Game/Platform text and Tag text) with case-insensitive matching and clearable inputs; use shadcn-ui Input/Button composition and ensure all user-facing text is English. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/features/modIdeas/components/ModIdeaWorkshopPage.tsx",
+          "operation": "modify",
+          "description": "Wire ModIdeaFilters and ModIdeaList into the workshop page layout and connect filter state to the rendered list (no backend filtering)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Use React Query for fetching and creating mod ideas with cache invalidation so the list updates immediately after creation.",
+      "acceptanceCriteria": [
+        "The list query is implemented with React Query and shows loading and error states in English.",
+        "The create mutation invalidates/refetches the mod idea list query on success.",
+        "No direct fetch logic is duplicated outside React Query for these operations."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/modIdeas/queries.ts",
+          "operation": "create",
+          "description": "Implement React Query hooks for mod ideas: a list query calling the backend actor's getAllModIdeas and a create mutation calling createModIdea; include query keys and cache invalidation on successful create (invalidate/refetch the list query)."
+        },
+        {
+          "path": "frontend/src/features/modIdeas/components/ModIdeaWorkshopPage.tsx",
+          "operation": "modify",
+          "description": "Use the React Query list hook to fetch mod ideas on load (render loading/error states in English) and pass results to ModIdeaList."
+        },
+        {
+          "path": "frontend/src/features/modIdeas/components/ModIdeaForm.tsx",
+          "operation": "modify",
+          "description": "Use the React Query create mutation to submit the form; on success reset form fields and rely on query invalidation so the list updates without manual refresh; show English error messages for failed calls."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Apply a coherent creative \"mod workshop\" theme across the app using Tailwind + shadcn composition with a non-blue/purple-dominant palette.",
+      "acceptanceCriteria": [
+        "All primary UI surfaces (header, form, list/cards, empty/loading/error states) share a consistent theme (palette, type scale, spacing).",
+        "Theme does not rely on blue/purple as the dominant palette unless explicitly requested later.",
+        "Uses existing shadcn UI components by composition (no edits to immutable UI component sources)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Adjust global theme tokens and base styles to establish a consistent \"mod workshop\" look (e.g., warm/industrial neutrals with accent colors not dominated by blue/purple), including typography defaults and background/foreground variables used by Tailwind/shadcn classes."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme (only via config) to support the chosen workshop palette/typography/spacing (e.g., custom semantic color variables or additional shadows) while preserving shadcn variable-driven color mapping."
+        },
+        {
+          "path": "frontend/src/features/modIdeas/components/ModIdeaWorkshopPage.tsx",
+          "operation": "modify",
+          "description": "Apply consistent themed layout styling across header, form, list, and empty/loading/error states using Tailwind utility classes and shadcn-ui Card/Badge/Alert composition (no edits to immutable shadcn component sources). Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

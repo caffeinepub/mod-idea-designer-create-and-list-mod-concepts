@@ -1,0 +1,10 @@
+{
+  "frontend/src/index.css": "Global styles with warm workshop-themed OKLCH color system (amber/orange tones) for both light and dark modes, replacing default blue/purple palette.",
+  "frontend/tailwind.config.js": "Extended Tailwind configuration with custom workshop theme colors, Space Grotesk display font, custom shadows, and fade-in animation.",
+  "frontend/src/App.tsx": "Main application component that renders the ModIdeaWorkshopPage as the primary view.",
+  "frontend/src/features/modIdeas/queries.ts": "React Query hooks for fetching all mod ideas (sorted newest first) and creating new mod ideas with automatic cache invalidation.",
+  "frontend/src/features/modIdeas/components/ModIdeaWorkshopPage.tsx": "Main workshop page layout with header, two-column grid (form on left, filtered list on right), loading/error states, and footer.",
+  "frontend/src/features/modIdeas/components/ModIdeaForm.tsx": "Controlled form component for creating mod ideas with inline validation, success/error feedback, and automatic reset on successful submission.",
+  "frontend/src/features/modIdeas/components/ModIdeaList.tsx": "Displays mod ideas as cards with collapsible descriptions, badges for tags, game/platform info, and empty state message.",
+  "frontend/src/features/modIdeas/components/ModIdeaFilters.tsx": "Client-side filter controls for game/platform and tag text with clear filters button."
+}

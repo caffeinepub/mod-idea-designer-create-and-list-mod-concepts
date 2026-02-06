@@ -1,0 +1,126 @@
+{
+  "kind": "build_request",
+  "title": "Mod Idea Designer: Create and List Mod Concepts",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement backend data storage and APIs for mod ideas: allow creating a mod idea and listing all created mod ideas (persisted in canister stable state). Each mod idea must include: id, title, description, game/platform, tags (list of strings), createdAt timestamp, and author principal (if available).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Mod tasarlayalım"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new mod idea can be created via a canister method and is persisted across canister upgrades/restarts via stable state.",
+        "A canister method returns the list of mod ideas in reverse-chronological order (newest first).",
+        "Each saved mod idea includes id, title, description, game/platform, tags, createdAt, and author principal (when the caller is known).",
+        "Backend rejects invalid payloads (e.g., empty title or empty description) with a clear error result."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Create a frontend page that lets users design a mod idea using a form with fields: Title, Description, Game/Platform, Tags (comma-separated input that becomes a list). On submit, save the idea via the backend and show success/error feedback.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Mod tasarlayalım"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The form prevents submission when required fields (Title, Description) are empty and shows inline validation messages in English.",
+        "Submitting a valid form calls the backend create method and resets the form on success.",
+        "The UI shows a clear error message when the backend returns an error or the call fails."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Create a frontend list view that displays all created mod ideas with basic filtering and viewing: show Title, Game/Platform, Tags, Created date, and a truncated Description preview; allow expanding/collapsing each item to read the full description.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Mod tasarlayalım"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On page load, the app fetches mod ideas from the backend and renders them newest-first.",
+        "Each mod idea card shows Title, Game/Platform, Tags, and Created date; description is truncated by default with a user control to expand/collapse.",
+        "If there are no mod ideas, the UI shows an empty state message in English (e.g., \"No mod ideas yet\").",
+        "The list has a simple client-side filter by Game/Platform text and/or tag text (case-insensitive)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Use React Query for fetching and mutations for mod ideas, including cache invalidation after creating a new idea so the list updates immediately without a manual refresh.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Mod tasarlayalım"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The list query is implemented with React Query and shows loading and error states in English.",
+        "The create mutation invalidates/refetches the mod idea list query on success.",
+        "No direct fetch logic is duplicated outside React Query for these operations."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Apply a coherent, creative visual theme across the app (colors, typography, spacing, and components) suitable for a \"mod workshop\" concept, avoiding default/plain styling. Use Tailwind + shadcn composition and keep the theme consistent across form, list, and empty/loading states.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Mod tasarlayalım"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All primary UI surfaces (header, form, list/cards, empty/loading/error states) share a consistent theme (palette, type scale, spacing).",
+        "Theme does not rely on blue/purple as the dominant palette unless explicitly requested later.",
+        "Uses existing shadcn UI components by composition (no edits to immutable UI component sources)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (all logic in backend/main.mo).",
+    "Do not edit any frontend files under immutablePaths (e.g., frontend/src/hooks/useInternetIdentity.ts(x), frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui).",
+    "User-facing text in the app must be in English."
+  ],
+  "nonGoals": [
+    "Do not implement real-time collaboration or live updates (no websockets).",
+    "Do not add third-party authentication providers; only Internet Identity is allowed if authentication is later needed.",
+    "Do not implement external database integrations or off-chain storage.",
+    "Do not build complex moderation/rating/commenting features unless explicitly requested."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "User-facing text should be English"
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}
