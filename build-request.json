@@ -1,0 +1,125 @@
+{
+  "kind": "build_request",
+  "title": "Mod Gallery — Public Listing, Submission Form & Search",
+  "projectName": "Mod Gallery",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Extend the backend actor to store mods with the following fields: name, description, features (list of strings), author name, category, and creation timestamp. All stored mods must be publicly readable without authentication.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Mod Ekleme — Kullanıcılar mod adı, açıklaması, özellikleri, yazar adı gibi tüm bilgileri girerek mod paylaşabilir",
+          "herkez görsün",
+          "hepsi"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A Motoko stable data structure stores each mod with: id, name, description, features (array of text), author, category, and createdAt timestamp.",
+        "A public query method returns all mods sorted newest-first.",
+        "An update method accepts the mod fields and persists a new mod entry."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Create a mod submission form that allows any user to add a new mod with fields: Mod Name, Description, Features (comma-separated or multi-entry), Author Name, and Category. The form must validate that Name and Author are not empty before submission.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Mod Ekleme — Kullanıcılar mod adı, açıklaması, özellikleri, yazar adı gibi tüm bilgileri girerek mod paylaşabilir"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Form has inputs for: Mod Name, Description, Features, Author Name, Category.",
+        "Submitting with an empty Name or Author shows a validation error.",
+        "On successful submission the form clears and the mod appears in the public list.",
+        "A loading/disabled state is shown while the submission is in progress."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Display all submitted mods in a public gallery listing visible to every visitor (no login required). Each mod card must show: Mod Name, Description, Features (as badges), Author Name, Category, and formatted creation date.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Tüm modlar herkes tarafından görülebilir",
+          "Mod kartlarında tüm bilgiler gösterilir (ad, açıklaması, özellikleri, yazarı ve tarihi)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Gallery page loads and shows all mods without requiring login.",
+        "Each card displays: name, description, all features as styled badges, author, category, and date.",
+        "Mods are displayed newest-first.",
+        "An empty state message is shown when no mods have been submitted yet."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a search bar at the top of the gallery that filters the displayed mod list in real time by mod name or by any feature text. The search must be case-insensitive.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "1 saat boyunca modu aradım",
+          "Arama özelliği — mod adına veya özelliğine göre arama yapılabilsin",
+          "ara dım modun özelliği ni yazdımda rahatlıyrum"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A search input is prominently displayed above the mod list.",
+        "Typing in the search box instantly filters the mod cards to those whose name or any feature contains the search string (case-insensitive).",
+        "A 'No results found' message is shown when the search matches nothing.",
+        "Clearing the search input restores the full mod list."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Apply a cohesive visual theme to the Mod Gallery app. Use a dark, game-inspired aesthetic with rich accent colors (e.g., deep charcoal backgrounds, vivid teal or amber highlights), bold typography for mod titles, and card-based layout. Enforce the theme consistently across all pages and components.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Mod Galerisi uygulaması"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The app uses a dark background with a consistent accent color throughout.",
+        "All mod cards share the same visual style.",
+        "Typography is clear and readable with distinct hierarchy between titles and body text.",
+        "The theme is applied globally (header, form, cards, search bar)."
+      ]
+    }
+  ],
+  "constraints": [
+    "All backend logic must remain in a single Motoko actor (backend/main.mo).",
+    "Do not modify immutable frontend paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+    "The mod gallery listing must be readable without authentication."
+  ],
+  "nonGoals": [
+    "User authentication or login-gated mod submission.",
+    "Mod editing or deletion.",
+    "Upvoting, comments, or social features.",
+    "Pagination (client-side filtering is sufficient for now).",
+    "External image uploads for mods."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Dark game-themed banner with glowing grid lines and abstract controller/gear silhouettes on a deep charcoal background (gallery-banner.dim_1200x300.png)"
+    ],
+    "edits": []
+  }
+}

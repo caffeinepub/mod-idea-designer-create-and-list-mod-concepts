@@ -1,0 +1,110 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Mod Gallery — Public Listing, Submission Form & Search",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Create a mod submission form that allows any user to add a new mod with fields: Mod Name, Description, Features (comma-separated or multi-entry), Author Name, and Category. The form must validate that Name and Author are not empty before submission.",
+      "acceptanceCriteria": [
+        "Form has inputs for: Mod Name, Description, Features, Author Name, Category.",
+        "Submitting with an empty Name or Author shows a validation error.",
+        "On successful submission the form clears and the mod appears in the public list.",
+        "A loading/disabled state is shown while the submission is in progress."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/modGallery/queries.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for fetching all mods from the backend (getAllMods) and submitting a new mod (saveMod mutation). The fetch hook should sort mods newest-first. The mutation hook should invalidate the mods query on success to trigger a refresh."
+        },
+        {
+          "path": "frontend/src/features/modGallery/components/ModSubmissionForm.tsx",
+          "operation": "create",
+          "description": "Create a controlled form component with inputs for Mod Name (text), Description (textarea), Features (textarea with comma-separated instruction or multi-line entry), Author Name (text), and Category (text or select). Implement validation that prevents submission if Name or Author is empty, showing inline error messages. Use the saveMod mutation hook and display loading/disabled state during submission. Clear form fields on successful submission and show a success message."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Display all submitted mods in a public gallery listing visible to every visitor (no login required). Each mod card must show: Mod Name, Description, Features (as badges), Author Name, Category, and formatted creation date.",
+      "acceptanceCriteria": [
+        "Gallery page loads and shows all mods without requiring login.",
+        "Each card displays: name, description, all features as styled badges, author, category, and date.",
+        "Mods are displayed newest-first.",
+        "An empty state message is shown when no mods have been submitted yet."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/modGallery/utils/dateFormatting.ts",
+          "operation": "create",
+          "description": "Create a utility function that converts a bigint nanosecond timestamp (Time from backend) into a human-readable date string using the user's locale."
+        },
+        {
+          "path": "frontend/src/features/modGallery/components/ModCard.tsx",
+          "operation": "create",
+          "description": "Create a card component that displays a single mod's data: Mod Name as a bold heading, Description as body text, Features array rendered as styled badge elements with spacing, Author Name, Category, and the formatted creation date. Apply consistent dark-themed card styling with the global accent color for feature badges."
+        },
+        {
+          "path": "frontend/src/features/modGallery/components/ModList.tsx",
+          "operation": "create",
+          "description": "Create a list component that accepts an array of mods (already sorted newest-first) and renders a ModCard for each. Show an empty state message when the array is empty. Use a grid or flex layout for responsive card display."
+        },
+        {
+          "path": "frontend/src/features/modGallery/components/ModGalleryPage.tsx",
+          "operation": "create",
+          "description": "Create the main gallery page component that uses the getAllMods query hook to fetch all mods, maintains local search state for filtering, renders ModSearchBar with search state wired, renders ModSubmissionForm at the top, renders ModList with the filtered mods array, shows empty/no-results states appropriately, and displays the generated banner image at the top using the workspace path frontend/public/assets/generated/gallery-banner.dim_1200x300.png as a static asset."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add a search bar at the top of the gallery that filters the displayed mod list in real time by mod name or by any feature text. The search must be case-insensitive.",
+      "acceptanceCriteria": [
+        "A search input is prominently displayed above the mod list.",
+        "Typing in the search box instantly filters the mod cards to those whose name or any feature contains the search string (case-insensitive).",
+        "A 'No results found' message is shown when the search matches nothing.",
+        "Clearing the search input restores the full mod list."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/features/modGallery/components/ModSearchBar.tsx",
+          "operation": "create",
+          "description": "Create a search input component that accepts a value prop and an onChange callback. Style the input prominently with a search icon and placeholder text. Apply consistent dark theme styling."
+        },
+        {
+          "path": "frontend/src/features/modGallery/components/ModGalleryPage.tsx",
+          "operation": "modify",
+          "description": "Add client-side filtering logic to ModGalleryPage that filters the fetched mods array in real-time based on case-insensitive matches against mod name or any feature string. Show a 'No results found' message when the filtered array is empty but the original array is not."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Apply a cohesive visual theme to the Mod Gallery app. Use a dark, game-inspired aesthetic with rich accent colors (e.g., deep charcoal backgrounds, vivid teal or amber highlights), bold typography for mod titles, and card-based layout. Enforce the theme consistently across all pages and components.",
+      "acceptanceCriteria": [
+        "The app uses a dark background with a consistent accent color throughout.",
+        "All mod cards share the same visual style.",
+        "Typography is clear and readable with distinct hierarchy between titles and body text.",
+        "The theme is applied globally (header, form, cards, search bar)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Modify the CSS custom properties to define a dark, game-inspired theme. Set --background to a deep charcoal, --foreground to a light neutral for text, and define accent colors using --primary (vivid teal or amber) and --secondary for highlights. Ensure contrast ratios are sufficient for readability. Add any additional token overrides needed for card borders, muted text, and interactive states."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Verify or extend the Tailwind configuration to support the new color tokens defined in index.css. Ensure the theme colors reference the CSS variables correctly. Add any custom font sizes or weights if bold typography for mod titles requires specific values not covered by default."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace the current ModIdeaWorkshopPage render with ModGalleryPage as the main application view. Import ModGalleryPage from features/modGallery/components/ModGalleryPage. This makes the mod gallery the primary page of the app."
+        }
+      ]
+    }
+  ]
+}

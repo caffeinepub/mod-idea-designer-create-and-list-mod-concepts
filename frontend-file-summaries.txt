@@ -1,0 +1,20 @@
+{
+  "frontend/src/index.css": "Global styles with a dark game-inspired OKLCH color system using deep charcoal backgrounds and vivid teal accent colors for both light and dark modes.",
+  "frontend/tailwind.config.js": "Extended Tailwind configuration with game-themed colors, Rajdhani display font, custom glow shadow, and fade-in animation.",
+  "frontend/src/App.tsx": "Main application component that renders the ModGalleryPage as the primary view.",
+  "frontend/src/features/modIdeas/queries.ts": "React Query hooks using `getUserModIdeas` (authenticated, per-user) instead of `getAllModIdeas`, with query key `userModIdeas` and cache invalidation on successful creation.",
+  "frontend/src/features/modIdeas/components/ModIdeaWorkshopPage.tsx": "Main workshop page with authentication gating, mod list/form layout, and an informational amber notice (shown when authenticated) explaining that newly submitted mods go live at midnight of the next calendar day.",
+  "frontend/src/features/modIdeas/components/ModIdeaForm.tsx": "Controlled form for creating mod ideas that accepts an `isAuthenticated` prop; shows a locked/disabled state with a message when the user is not logged in, and renders the full form with Turkish UI copy when authenticated.",
+  "frontend/src/features/modIdeas/components/ModIdeaList.tsx": "Displays mod ideas as cards with collapsible descriptions, tags, and — for pending (inactive) mods — an amber \"Planlandı\" badge and a scheduled go-live date/time indicator.",
+  "frontend/src/features/modIdeas/components/ModIdeaFilters.tsx": "Client-side filter controls for game/platform and tag text with clear filters button.",
+  "frontend/src/features/modIdeas/errorFormatting.ts": "Helper utility that extracts and formats readable English error details from various error types (Error objects, React Query errors, strings, objects) for display in the UI.",
+  "frontend/src/components/LoginButton.tsx": "Reusable login/logout button component using `useInternetIdentity` and `useQueryClient`; clears query cache on logout and handles the \"already authenticated\" edge case.",
+  "frontend/src/features/modIdeas/utils/dateFormatting.ts": "Utility function that converts a backend Time (bigint nanoseconds) to a localized Turkish date/time string for display on mod cards.",
+  "frontend/src/features/modGallery/utils/dateFormatting.ts": "Utility function that converts a backend bigint nanosecond timestamp to a human-readable localized date string.",
+  "frontend/src/features/modGallery/queries.ts": "React Query hooks for fetching all mods (sorted newest-first) and submitting a new mod with cache invalidation.",
+  "frontend/src/features/modGallery/components/ModSearchBar.tsx": "Search input component with a search icon and placeholder, wired to parent state via value/onChange props.",
+  "frontend/src/features/modGallery/components/ModCard.tsx": "Card component displaying a single mod's name, description, feature badges, author, category, and formatted creation date.",
+  "frontend/src/features/modGallery/components/ModList.tsx": "Responsive grid list of ModCards with empty and no-results states.",
+  "frontend/src/features/modGallery/components/ModSubmissionForm.tsx": "Controlled form for submitting new mods with validation, loading state, success feedback, and error handling.",
+  "frontend/src/features/modGallery/components/ModGalleryPage.tsx": "Main gallery page with banner, search bar, submission form, loading skeletons, filtered mod list, and footer."
+}

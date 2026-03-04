@@ -1,0 +1,114 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-03-03T03:44:49.405Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Extend the backend actor to store mods with the following fields: name, description, features (list of strings), author name, category, and creation timestamp. All stored mods must be publicly readable without authentication.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Create a mod submission form that allows any user to add a new mod with fields: Mod Name, Description, Features (comma-separated or multi-entry), Author Name, and Category. The form must validate that Name and Author are not empty before submission.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/modGallery/queries.ts",
+          "frontend/src/features/modGallery/components/ModSubmissionForm.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/modGallery/queries.ts",
+          "frontend/src/features/modGallery/components/ModSubmissionForm.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Display all submitted mods in a public gallery listing visible to every visitor (no login required). Each mod card must show: Mod Name, Description, Features (as badges), Author Name, Category, and formatted creation date.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/modGallery/utils/dateFormatting.ts",
+          "frontend/src/features/modGallery/components/ModCard.tsx",
+          "frontend/src/features/modGallery/components/ModList.tsx",
+          "frontend/src/features/modGallery/components/ModGalleryPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/modGallery/utils/dateFormatting.ts",
+          "frontend/src/features/modGallery/components/ModCard.tsx",
+          "frontend/src/features/modGallery/components/ModList.tsx",
+          "frontend/src/features/modGallery/components/ModGalleryPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Add a search bar at the top of the gallery that filters the displayed mod list in real time by mod name or by any feature text. The search must be case-insensitive.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/features/modGallery/components/ModSearchBar.tsx",
+          "frontend/src/features/modGallery/components/ModGalleryPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/features/modGallery/components/ModSearchBar.tsx",
+          "frontend/src/features/modGallery/components/ModGalleryPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Apply a cohesive visual theme to the Mod Gallery app. Use a dark, game-inspired aesthetic with rich accent colors (e.g., deep charcoal backgrounds, vivid teal or amber highlights), bold typography for mod titles, and card-based layout. Enforce the theme consistently across all pages and components.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/App.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/public/assets/generated/gallery-banner.dim_1200x300.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/features/modGallery/components/ModCard.tsx",
+    "frontend/src/features/modGallery/components/ModGalleryPage.tsx",
+    "frontend/src/features/modGallery/components/ModList.tsx",
+    "frontend/src/features/modGallery/components/ModSearchBar.tsx",
+    "frontend/src/features/modGallery/components/ModSubmissionForm.tsx",
+    "frontend/src/features/modGallery/queries.ts",
+    "frontend/src/features/modGallery/utils/dateFormatting.ts",
+    "frontend/src/features/modIdeas/components/ModIdeaFilters.tsx",
+    "frontend/src/features/modIdeas/components/ModIdeaForm.tsx",
+    "frontend/src/features/modIdeas/components/ModIdeaList.tsx",
+    "frontend/src/features/modIdeas/components/ModIdeaWorkshopPage.tsx",
+    "frontend/src/features/modIdeas/errorFormatting.ts",
+    "frontend/src/features/modIdeas/queries.ts",
+    "frontend/src/features/modIdeas/utils/dateFormatting.ts",
+    "frontend/src/index.css",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

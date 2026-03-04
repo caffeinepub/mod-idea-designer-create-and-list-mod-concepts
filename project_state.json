@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Mod Gallery app — users can submit mods with details (name, description, features, author, date), all mods are publicly visible, and there is a search feature to find mods by name or feature.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Dark game-themed banner with glowing grid lines and abstract controller/gear silhouettes on a deep charcoal background (gallery-banner.dim_1200x300.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-mod-submission-form-that-allows-any-user-to-add-a-new-mod-with-fields-mod-name-description-features-comma-separated-or-multi-entry-author-name-and-category-the-form-must-validate-that-name-and-author-are-not-empty-before-submission",
+      "title": "Create a mod submission form that allows any user to add a new mod with fields: Mod Name, Description, Features (comma-separated or multi-entry), Author Name, and Category. The form must validate that Name and Author are not empty before submission.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-all-submitted-mods-in-a-public-gallery-listing-visible-to-every-visitor-no-login-required-each-mod-card-must-show-mod-name-description-features-as-badges-author-name-category-and-formatted-creation-date",
+      "title": "Display all submitted mods in a public gallery listing visible to every visitor (no login required). Each mod card must show: Mod Name, Description, Features (as badges), Author Name, Category, and formatted creation date.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-search-bar-at-the-top-of-the-gallery-that-filters-the-displayed-mod-list-in-real-time-by-mod-name-or-by-any-feature-text-the-search-must-be-case-insensitive",
+      "title": "Add a search bar at the top of the gallery that filters the displayed mod list in real time by mod name or by any feature text. The search must be case-insensitive.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-visual-theme-to-the-mod-gallery-app-use-a-dark-game-inspired-aesthetic-with-rich-accent-colors-e-g-deep-charcoal-backgrounds-vivid-teal-or-amber-highlights-bold-typography-for-mod-titles-and-card-based-layout-enforce-the-theme-consistently-across-all-pages-and-components",
+      "title": "Apply a cohesive visual theme to the Mod Gallery app. Use a dark, game-inspired aesthetic with rich accent colors (e.g., deep charcoal backgrounds, vivid teal or amber highlights), bold typography for mod titles, and card-based layout. Enforce the theme consistently across all pages and components.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Mod submission form with fields: name, description, features, author, category",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Public mod gallery listing all submitted mods visible to everyone",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Search functionality to find mods by name or features",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Mod cards displaying all details: name, description, features, author, date",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Extend the backend actor to store mods with the following fields: name, description, features (list of strings), author name, category, and creation timestamp. All stored mods must be publicly readable without authentication.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Mod Gallery",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

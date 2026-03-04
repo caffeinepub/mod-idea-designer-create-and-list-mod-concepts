@@ -1,0 +1,56 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-03-03T03:44:49.401Z",
+  "summary": "The diff implements nearly all requirements well. The backend Motoko actor stores mods with all required fields and exposes public query and update methods. The frontend has a submission form with validation, a gallery listing, search bar, and a dark game-themed visual style. One minor gap: the backend's ModData/PublicModData type lacks an explicit 'id' field required by REQ-1's acceptance criteria. The gallery banner image is referenced in the code but not confirmed as delivered in the diff. The search also filters by category and author (beyond the spec's name/feature requirement), which is a minor extension.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "A Motoko stable data structure stores each mod with: id, name, description, features (array of text), author, category, and createdAt timestamp.",
+      "reason": "The ModData and PublicModData types in backend/main.mo do not include an 'id' field. The acceptance criteria explicitly require an 'id' per stored mod.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Search filters by category and author name in addition to mod name and features.",
+      "reason": "REQ-4 specifies filtering only by mod name or any feature text. The ModGalleryPage additionally applies categoryMatch and authorMatch filters which were not requested.",
+      "evidence": [
+        "frontend/src/features/modGallery/components/ModGalleryPage.tsx"
+      ]
+    },
+    {
+      "description": "A migration module was added referencing a prior OldActor schema with userProfiles, modIdeas, and userToModIdeas structures.",
+      "reason": "The build request only asks for a new mod gallery backend with no mention of migrating from a prior schema.",
+      "evidence": [
+        "backend/migration.mo"
+      ]
+    }
+  ],
+  "confidence": 0.85,
+  "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/App.tsx",
+    "frontend/src/features/modGallery/components/ModCard.tsx",
+    "frontend/src/features/modGallery/components/ModGalleryPage.tsx",
+    "frontend/src/features/modGallery/components/ModList.tsx",
+    "frontend/src/features/modGallery/components/ModSearchBar.tsx",
+    "frontend/src/features/modGallery/components/ModSubmissionForm.tsx",
+    "frontend/src/features/modGallery/queries.ts",
+    "frontend/src/features/modGallery/utils/dateFormatting.ts",
+    "frontend/src/features/modIdeas/components/ModIdeaFilters.tsx",
+    "frontend/src/features/modIdeas/components/ModIdeaForm.tsx",
+    "frontend/src/features/modIdeas/components/ModIdeaList.tsx",
+    "frontend/src/features/modIdeas/components/ModIdeaWorkshopPage.tsx",
+    "frontend/src/features/modIdeas/errorFormatting.ts",
+    "frontend/src/features/modIdeas/queries.ts",
+    "frontend/src/features/modIdeas/utils/dateFormatting.ts",
+    "frontend/src/index.css",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}
